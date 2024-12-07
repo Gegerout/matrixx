@@ -7,6 +7,7 @@ class Matrix:
         self.ind_ptr = [] # индексы начала каждой строки в массиве data
 
         # преобразование матрицы в разреженную
+        data_ind = 0  # удобно сохранияем инждекс последнего ненулевого элемента в data
         for i in range(n):
             flag = False
             for j in range(m):
@@ -14,7 +15,8 @@ class Matrix:
                     self.data.append(matrix[i][j])
                     self.indices.append(j)
                     if not flag:
-                        self.ind_ptr.append(self.data.index(matrix[i][j]))
+                        self.ind_ptr.append(data_ind)
+                    data_ind += 1
                     flag = True
 
         self.ind_ptr.append(len(self.data))
