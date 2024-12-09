@@ -1,11 +1,16 @@
+import typing as tp
+
+
 class Matrix:
-    def __init__(self, n, m, matrix):
+    def __init__(self, n, m, matrix=None):
         """
         Конструктор класса для инициализации разреженной матрицы
         :param n: Количество строк матрицы
         :param m: Количество столбцов матрицы
         :param matrix: Двумерный список, представляющий исходную матрицу
         """
+        if matrix is None:
+            matrix = [[0 for __ in range(m)] for _ in range(n)]
         self.n = n
         self.m = m
         self.data = []  # данные в разреженном формате

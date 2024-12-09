@@ -40,7 +40,7 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(matrix.get_element(1, 2), 0)
         self.assertEqual(matrix.get_element(0, 1), 0)
 
-    # Тест получения пути
+    # Тест получения следа
     def test_get_trace(self):
         # Для квадратной матрицы
         matrix_data = [
