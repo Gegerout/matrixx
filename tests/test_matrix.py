@@ -1,9 +1,9 @@
 import unittest
-from matrix import Matrix  # Предполагаем, что класс Matrix находится в файле matrix.py
+from matrix import Matrix
 
 
 class TestMatrix(unittest.TestCase):
-
+    # Тест инициализации матрицы
     def test_init(self):
         matrix_data = [
             [3, 0, 2],
@@ -21,6 +21,7 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(matrix.indices, expected_indices)
         self.assertEqual(matrix.ind_ptr, expected_ind_ptr)
 
+    # Тест получения элемента матрицы
     def test_get_element(self):
         matrix_data = [
             [3, 0, 2],
@@ -39,8 +40,9 @@ class TestMatrix(unittest.TestCase):
         self.assertEqual(matrix.get_element(1, 2), 0)
         self.assertEqual(matrix.get_element(0, 1), 0)
 
+    # Тест получения пути
     def test_get_trace(self):
-        # Тест для квадратной матрицы
+        # Для квадратной матрицы
         matrix_data = [
             [3, 0, 2],
             [0, 1, 0],
