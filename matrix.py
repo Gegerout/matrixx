@@ -29,6 +29,8 @@ class Matrix:
                         self.ind_ptr.append(data_ind)
                     data_ind += 1
                     flag = True
+            if not flag:
+                self.ind_ptr.append(data_ind)
 
         self.ind_ptr.append(len(self.data))
 
