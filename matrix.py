@@ -18,19 +18,12 @@ class Matrix:
         self.ind_ptr = []  # индексы начала каждой строки в массиве data
 
         # преобразование матрицы в разреженную
-        data_ind = 0
         for i in range(n):
-            flag = False
+            self.ind_ptr.append(len(self.data))
             for j in range(m):
                 if matrix[i][j] != 0:
                     self.data.append(matrix[i][j])
                     self.indices.append(j)
-                    if not flag:
-                        self.ind_ptr.append(data_ind)
-                    data_ind += 1
-                    flag = True
-            if not flag:
-                self.ind_ptr.append(data_ind)
 
         self.ind_ptr.append(len(self.data))
 
