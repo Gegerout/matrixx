@@ -24,6 +24,27 @@ class Matrix:
 
         self.ind_ptr.append(len(self.data))
 
+    def __eq__(self, other):
+        """
+        Метод для проверки эквивалентности двух объектов класса Matrix.
+
+        Два объекта считаются эквивалентными, если:
+        1. Их размеры (количество строк и столбцов) совпадают.
+        2. Их внутренние структуры разреженного представления (data, indices, ind_ptr) идентичны.
+
+        :param other: Объект, с которым производится сравнение.
+        :return: True, если объекты эквивалентны; False, если нет.
+        """
+        if not isinstance(other, Matrix):
+            return False
+        return (
+                self.n == other.n and
+                self.m == other.m and
+                self.data == other.data and
+                self.indices == other.indices and
+                self.ind_ptr == other.ind_ptr
+        )
+
     def get_element(self, i, j) -> float:
         """
         Метод для получения элемента разреженной матрицы по индексу (i, j)
