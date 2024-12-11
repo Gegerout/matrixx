@@ -33,6 +33,7 @@ def sum_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
     new_matrix.data = result_data
     new_matrix.indices = result_indices
     new_matrix.ind_ptr = result_ind_ptr
+
     return new_matrix
 
 
@@ -44,14 +45,13 @@ def scalar_matrix(scal: int, mat1: Matrix) -> Matrix:
     :return: Новая разреженная матрица, результат скалярного умножения.
     """
     result_data = [value * scal for value in mat1.data]
-    # Возвращаем новую матрицу с изменёнными значениями, а не изменяем исходную
+
     new_matrix = Matrix(mat1.n, mat1.m)
     new_matrix.data = result_data
     new_matrix.indices = mat1.indices.copy()
     new_matrix.ind_ptr = mat1.ind_ptr.copy()
-    return new_matrix
 
-    return mat1
+    return new_matrix
 
 
 def multiplication_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
@@ -70,6 +70,7 @@ def multiplication_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
     result_indices = []
     result_ind_ptr = [0]
     curr_ptr = 0
+
     for i in range(mat1.n + 1):
         if mat1.ind_ptr[i] - mat1.ind_ptr[i - 1] == 0:
             result_ind_ptr.append(curr_ptr)
@@ -87,9 +88,11 @@ def multiplication_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
                         result_indices.append(j)
                         if j == mat2.m - 1:
                             result_ind_ptr.append(curr_ptr)
+
     result_ind_ptr.append(result_ind_ptr[-1])
     new_matrix = Matrix(mat1.n, mat2.m)
     new_matrix.data = result_data
     new_matrix.indices = result_indices
     new_matrix.ind_ptr = result_ind_ptr
+
     return new_matrix

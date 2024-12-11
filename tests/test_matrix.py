@@ -51,13 +51,14 @@ class TestMatrix(unittest.TestCase):
         matrix = Matrix(3, 3, matrix_data)
         self.assertEqual(matrix.get_trace(), 9)  # 3 + 1 + 5 = 9
 
-        # Тест для неквадратной матрицы
-        matrix_data_non_square = [
+    # Получение следа для неквадратной матрицы
+    def test_invalid_trace(self):
+        init_matrix = Matrix(2, 3, [
             [1, 2, 3],
-            [4, 5, 6]
-        ]
-        matrix_non_square = Matrix(2, 3, matrix_data_non_square)
-        self.assertEqual(matrix_non_square.get_trace(), 0)  # Неквадратная матрица не может иметь след
+            [4, 5, 6],
+        ])
+        with self.assertRaises(ValueError):
+            init_matrix.get_trace()
 
 
 if __name__ == '__main__':

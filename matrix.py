@@ -1,6 +1,3 @@
-import typing as tp
-
-
 class Matrix:
     def __init__(self, n, m, matrix=None):
         """
@@ -27,7 +24,7 @@ class Matrix:
 
         self.ind_ptr.append(len(self.data))
 
-    def get_element(self, i, j):
+    def get_element(self, i, j) -> float:
         """
         Метод для получения элемента разреженной матрицы по индексу (i, j)
         :param i: Индекс строки
@@ -40,7 +37,7 @@ class Matrix:
         else:
             return 0
 
-    def get_trace(self):
+    def get_trace(self) -> float:
         """
         Метод для получения следа матрицы (сумма элементов на главной диагонали)
         :return: След матрицы, если она квадратная, иначе 0
@@ -48,4 +45,4 @@ class Matrix:
         if self.n == self.m:
             return sum([self.get_element(i, i) for i in range(self.n)])
         else:
-            return 0
+            raise ValueError("Матрица должна быть квадратной")

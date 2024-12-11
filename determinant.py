@@ -1,7 +1,7 @@
 from matrix import Matrix
 
 
-def count_determinant(matrix: Matrix) -> int:
+def count_determinant(matrix: Matrix) -> float:
     """
     Функция для подсчета определителя матрицы
     :param matrix: исходная матрица
