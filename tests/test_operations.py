@@ -26,7 +26,8 @@ class TestMatrixOperations(unittest.TestCase):
     # Тестирование сложения матриц
     def test_sum(self):
         summ = sum_matrix(self.A, self.B)
-        self.assertEqual(summ, Matrix(2, 3, [[1, 4, 2], [5, 3, 6]]))
+        answer = Matrix(2, 3, [[1, 4, 2], [5, 3, 6]])
+        self.assertEqual(summ, answer)
 
     # Тестирование умножения на скаляр
     def test_scalar(self):
