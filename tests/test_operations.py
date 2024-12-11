@@ -32,20 +32,20 @@ class TestMatrixOperations(unittest.TestCase):
     # Тестирование умножения на скаляр
     def test_scalar(self):
         scalar = scalar_matrix(2, self.A)
-        self.assertEqual(scalar.get_element(0, 0), 2)
-        self.assertEqual(scalar.get_element(0, 1), 0)
-        self.assertEqual(scalar.get_element(0, 2), 4)
-        self.assertEqual(scalar.get_element(1, 0), 0)
-        self.assertEqual(scalar.get_element(1, 1), 6)
-        self.assertEqual(scalar.get_element(1, 2), 0)
+        answer = Matrix(2, 3, [
+            [2, 0, 4],
+            [0, 6, 0]
+        ])
+        self.assertEqual(scalar, answer)
 
     # Тестирование умножения матриц
     def test_multiplication(self):
         multiplication = multiplication_matrix(self.A, self.E)
-        self.assertEqual(multiplication.get_element(0, 0), 7)
-        self.assertEqual(multiplication.get_element(0, 1), 10)
-        self.assertEqual(multiplication.get_element(1, 0), 0)
-        self.assertEqual(multiplication.get_element(1, 1), 0)
+        answer = Matrix(2, 2, [
+            [7, 10],
+            [0, 0]
+        ])
+        self.assertEqual(multiplication, answer)
 
     # Ожидание ошибки при неправильных размерах матриц
     def test_invalid_sum(self):
