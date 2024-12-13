@@ -37,7 +37,7 @@ def sum_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
     return new_matrix
 
 
-def scalar_matrix(scal: int, mat1: Matrix) -> Matrix:
+def scalar_matrix(mat1: Matrix, scal: int) -> Matrix:
     """
     Функция для скалярного умножения разреженной матрицы.
     :param scal: Скаляр для умножения.
