@@ -17,6 +17,12 @@ class TestMatrixOperations(unittest.TestCase):
             [5, 0, 6]
         ])
 
+        self.C = Matrix(3, 2, [
+            [0, 0],
+            [0, 0],
+            [0, 0]
+        ])
+
         self.E = Matrix(3, 2, [
             [1, 2],
             [0, 0],
@@ -46,6 +52,15 @@ class TestMatrixOperations(unittest.TestCase):
             [0, 0]
         ])
         self.assertEqual(multiplication, answer)
+
+    # Тестирование умножения нулевой матрицы
+    def test_zero_multiplication(self):
+        zero_multiplication = multiplication_matrix(self.C, self.A)
+        answer = Matrix(3, 3, [
+            [0, 0, 0],
+            [0, 0, 0],
+            [0, 0, 0]
+        ])
 
     # Ожидание ошибки при неправильных размерах матриц
     def test_invalid_sum(self):

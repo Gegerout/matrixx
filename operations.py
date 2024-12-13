@@ -69,26 +69,28 @@ def multiplication_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
     result_data = []
     result_indices = []
     result_ind_ptr = [0]
+    curr_ptr = 0
 
     for i in range(mat1.n):
-        row_data = {}
-        for k in range(mat1.ind_ptr[i], mat1.ind_ptr[i + 1]):
-            a_col = mat1.indices[k]
-            a_value = mat1.data[k]
-            for l in range(mat2.ind_ptr[a_col], mat2.ind_ptr[a_col + 1]):
-                b_col = mat2.indices[l]
-                b_value = mat2.data[l]
-                if b_col in row_data:
-                    row_data[b_col] += a_value * b_value
-                else:
-                    row_data[b_col] = a_value * b_value
+        if mat1.ind_ptr[i + 1] - mat1.ind_ptr[i] == 0:
+            result_ind_ptr.append(0)
+            continue
+        for j in range(mat2.m):
+            if j not in mat2.indices:
+                continue
+            curr_value = 0
+            for k in range(mat1.m):
+                curr_value += mat1.get_element(i, k) * mat2.get_element(k, j)
+                if k == mat1.m - 1:
+                    if curr_value != 0:
+                        curr_ptr += 1
+                        result_data.append(curr_value)
+                        result_indices.append(j)
+                        if j == mat2.m - 1:
+                            result_ind_ptr.append(curr_ptr)
 
-        for col, value in sorted(row_data.items()):
-            if value != 0:
-                result_data.append(value)
-                result_indices.append(col)
-        result_ind_ptr.append(len(result_data))
-
+    if result_ind_ptr.count(0) != mat1.n + 1:
+        result_ind_ptr.append(result_ind_ptr[-1])
     new_matrix = Matrix(mat1.n, mat2.m)
     new_matrix.data = result_data
     new_matrix.indices = result_indices
