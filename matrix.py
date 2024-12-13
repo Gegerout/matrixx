@@ -6,7 +6,7 @@ class Matrix:
         :param m: Количество столбцов матрицы
         :param matrix: Двумерный список, представляющий исходную матрицу
         """
-        if matrix is None:
+        if not matrix:
             matrix = [[0 for __ in range(m)] for _ in range(n)]
         self.n = n
         self.m = m
@@ -67,3 +67,16 @@ class Matrix:
             return sum([self.get_element(i, i) for i in range(self.n)])
         else:
             raise ValueError("Матрица должна быть квадратной")
+
+    def to_dense(self):
+        """
+        Метод для преобразования CSR-матрицы в двумерный список
+        :return: Двумерный список, представляющий плотную матрицу
+        """
+        dense_matrix = [[0] * self.m for _ in range(self.n)]
+
+        for i in range(self.n):
+            for ind in range(self.ind_ptr[i], self.ind_ptr[i + 1]):
+                j = self.indices[ind]
+                dense_matrix[i][j] = self.data[ind]
+        return dense_matrix

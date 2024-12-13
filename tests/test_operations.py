@@ -31,7 +31,7 @@ class TestMatrixOperations(unittest.TestCase):
 
     # Тестирование умножения на скаляр
     def test_scalar(self):
-        scalar = scalar_matrix(2, self.A)
+        scalar = scalar_matrix(self.A, 2)
         answer = Matrix(2, 3, [
             [2, 0, 4],
             [0, 6, 0]
