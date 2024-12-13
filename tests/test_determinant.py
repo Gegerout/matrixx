@@ -1,6 +1,6 @@
 import unittest
 from matrix import Matrix
-from determinant import count_determinant
+from determinant import solve
 
 
 class TestDeterminant(unittest.TestCase):
@@ -8,7 +8,8 @@ class TestDeterminant(unittest.TestCase):
     def test_1x1(self):
         matrix_data = [[5]]
         matrix = Matrix(1, 1, matrix_data)
-        self.assertEqual(count_determinant(matrix), 5)
+        self.assertEqual(solve(matrix)[0], 5)
+        self.assertEqual(solve(matrix)[1], True)
 
     # Тест для матрицы 2x2
     def test_2x2(self):
@@ -17,7 +18,8 @@ class TestDeterminant(unittest.TestCase):
             [2, 1]
         ]
         matrix = Matrix(2, 2, matrix_data)
-        self.assertEqual(count_determinant(matrix), -5)
+        self.assertEqual(solve(matrix)[0], -5)
+        self.assertEqual(solve(matrix)[1], True)
 
     # Тест для матрицы 3x3
     def test_3x3(self):
@@ -27,7 +29,8 @@ class TestDeterminant(unittest.TestCase):
             [0, 0, 6]
         ]
         matrix = Matrix(3, 3, matrix_data)
-        self.assertEqual(count_determinant(matrix), 24)
+        self.assertEqual(solve(matrix)[0], 24)
+        self.assertEqual(solve(matrix)[1], True)
 
     def test_4x4(self):
         # Тест для матрицы 4x4
@@ -38,7 +41,8 @@ class TestDeterminant(unittest.TestCase):
             [7, 8, 9, 10]
         ]
         matrix = Matrix(4, 4, matrix_data)
-        self.assertEqual(count_determinant(matrix), 180)
+        self.assertEqual(solve(matrix)[0], 180)
+        self.assertEqual(solve(matrix)[1], True)
 
     # Тест для вырожденной матрицы (определитель должен быть равен 0)
     def test_singular_matrix(self):
@@ -48,7 +52,8 @@ class TestDeterminant(unittest.TestCase):
             [1, 2, 3]
         ]
         matrix = Matrix(3, 3, matrix_data)
-        self.assertEqual(count_determinant(matrix), 0)
+        self.assertEqual(solve(matrix)[0], 0)
+        self.assertEqual(solve(matrix)[1], False)
 
     # Тест для большой матрицы
     def test_large_matrix(self):
@@ -60,7 +65,8 @@ class TestDeterminant(unittest.TestCase):
             [9, 19, 2, 5, 91],
         ]
         matrix = Matrix(5, 5, matrix_data)
-        self.assertEqual(count_determinant(matrix), 76671)
+        self.assertEqual(solve(matrix)[0], 76671)
+        self.assertEqual(solve(matrix)[1], True)
 
 
 if __name__ == '__main__':

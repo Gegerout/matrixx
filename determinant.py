@@ -1,32 +1,33 @@
 from matrix import Matrix
 
 
+def get_dense_submatrix(matrix: Matrix, excluded_row: int, excluded_col: int):
+    """
+    Возвращает матрицу с удалением указанных столбца и строки
+    :param matrix: исходная матрица
+    :param excluded_row: строка, которую нужно исключить
+    :param excluded_col: столбец, который нужно исключить
+    :return: Подматрица без указанной строки и столбца
+    """
+    dense_matrix = []
+    for i in range(matrix.n):
+        if i == excluded_row:
+            continue
+        row = []
+        for j in range(matrix.m):
+            if j == excluded_col:
+                continue
+            row.append(matrix.get_element(i, j))
+        dense_matrix.append(row)
+    return dense_matrix
+
+
 def count_determinant(matrix: Matrix) -> float:
     """
     Функция для подсчета определителя матрицы
     :param matrix: исходная матрица
     :return: Определитель матрицы
     """
-    def get_dense_submatrix(matrix, excluded_row, excluded_col):
-        """
-        Возвращает матрицу с удалением указанных столбца и строки
-        :param matrix: исходная матрица
-        :param excluded_row: строка, которую нужно исключить
-        :param excluded_col: столбец, который нужно исключить
-        :return: Подматрица без указанной строки и столбца
-        """
-        dense_matrix = []
-        for i in range(matrix.n):
-            if i == excluded_row:
-                continue
-            row = []
-            for j in range(matrix.m):
-                if j == excluded_col:
-                    continue
-                row.append(matrix.get_element(i, j))
-            dense_matrix.append(row)
-        return dense_matrix
-
     # Простой случай матрица 1 на 1
     if matrix.n == 1 and matrix.m == 1:
         return matrix.get_element(0, 0)
@@ -48,3 +49,9 @@ def count_determinant(matrix: Matrix) -> float:
         determinant += cofactor
 
     return determinant
+
+
+def solve(matrix: Matrix):
+    determinant = count_determinant(matrix)
+
+    return determinant, determinant != 0
