@@ -73,10 +73,10 @@ class Matrix:
         Метод для преобразования CSR-матрицы в двумерный список
         :return: Двумерный список, представляющий плотную матрицу
         """
-        if not self.data or all(value == 0 for value in self.data):
-            return [[0] * self.m for _ in range(self.n)]
-
         dense_matrix = [[0] * self.m for _ in range(self.n)]
+
+        if not self.data or all(value == 0 for value in self.data):
+            return dense_matrix
 
         for i in range(self.n):
             for ind in range(self.ind_ptr[i], self.ind_ptr[i + 1]):
