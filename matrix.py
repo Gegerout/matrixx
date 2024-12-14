@@ -82,4 +82,5 @@ class Matrix:
             for ind in range(self.ind_ptr[i], self.ind_ptr[i + 1]):
                 j = self.indices[ind]
                 dense_matrix[i][j] = self.data[ind]
+
         return dense_matrix
