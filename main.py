@@ -35,13 +35,13 @@ matrix_mul = multiplication_matrix(matrix, matrix2)
 
 print("Сложение матрицы")
 for row in matrix_sum.to_dense():
-    print(row)
+    print(*row)
 print("Умножение матрицы на скаляр {}".format(scalar))
 for row in matrix_scalar.to_dense():
-    print(row)
+    print(*row)
 print("Умножение матриц")
 for row in matrix_mul.to_dense():
-    print(row)
+    print(*row)
 
 det_matrix, has_reverse = solve(matrix)
 
