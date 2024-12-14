@@ -61,6 +61,7 @@ class TestMatrixOperations(unittest.TestCase):
             [0, 0, 0],
             [0, 0, 0]
         ])
+        self.assertEqual(zero_multiplication, answer)
 
     # Ожидание ошибки при неправильных размерах матриц
     def test_invalid_sum(self):

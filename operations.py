@@ -73,10 +73,12 @@ def multiplication_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
 
     for i in range(mat1.n):
         if mat1.ind_ptr[i + 1] - mat1.ind_ptr[i] == 0:
-            result_ind_ptr.append(0)
+            result_ind_ptr.append(result_ind_ptr[-1])
             continue
+        cnt = 0
         for j in range(mat2.m):
             if j not in mat2.indices:
+                cnt += 1
                 continue
             curr_value = 0
             for k in range(mat1.m):
@@ -88,6 +90,8 @@ def multiplication_matrix(mat1: Matrix, mat2: Matrix) -> Matrix:
                         result_indices.append(j)
                         if j == mat2.m - 1:
                             result_ind_ptr.append(curr_ptr)
+        if cnt == mat2.m:
+            result_ind_ptr.append(result_ind_ptr[-1])
 
     if result_ind_ptr.count(0) != mat1.n + 1:
         result_ind_ptr.append(result_ind_ptr[-1])
